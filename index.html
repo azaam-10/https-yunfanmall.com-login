@@ -21,18 +21,23 @@
         ::-webkit-scrollbar {
             display: none;
         }
+        .dir-rtl {
+            direction: rtl;
+        }
     </style>
 <script type="importmap">
 {
   "imports": {
-    "react": "https://esm.sh/react@^19.2.3",
-    "react-dom/": "https://esm.sh/react-dom@^19.2.3/",
-    "react/": "https://esm.sh/react@^19.2.3/"
+    "react": "https://esm.sh/react@19.0.0",
+    "react-dom/": "https://esm.sh/react-dom@19.0.0/",
+    "react/": "https://esm.sh/react@19.0.0/"
   }
 }
 </script>
 </head>
 <body class="bg-[#F7F8FA]">
     <div id="root"></div>
+    <!-- Explicitly load the entry point for environments that don't auto-import it -->
+    <script type="module" src="./index.tsx"></script>
 </body>
 </html>

