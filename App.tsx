@@ -15,6 +15,9 @@ const App: React.FC = () => {
     setTimeout(() => setCopiedText(null), 2000);
   };
 
+  const username = "Aseemshabaa";
+  const balance = "26587.7869";
+
   return (
     <div className="relative max-w-[430px] mx-auto overflow-hidden min-h-screen">
       {/* Main Content with subtle blur when modal is active */}
@@ -40,7 +43,7 @@ const App: React.FC = () => {
             </div>
             <div>
               <div className="flex items-center space-x-2">
-                <span className="text-[24px] font-bold">muyy98</span>
+                <span className="text-[20px] font-bold">{username}</span>
                 <div className="bg-[#F5B400] text-white italic text-[10px] px-1.5 py-0.5 rounded-[6px] font-black leading-none h-4 flex items-center justify-center">
                   VIP 3
                 </div>
@@ -55,8 +58,9 @@ const App: React.FC = () => {
             <div className="flex flex-col">
               <span className="text-[14px] font-semibold mb-1 opacity-90">My Account</span>
               <div className="flex items-baseline space-x-1.5">
-                <span className="text-[13px] font-bold">USDT</span>
-                <span className="text-[28px] font-bold leading-none tracking-tight">3078.5533</span>
+                <span className="text-[12px] font-bold opacity-80">USDT</span>
+                {/* Reduced font size from 28px to 23px */}
+                <span className="text-[23px] font-bold leading-none tracking-tight">{balance}</span>
               </div>
             </div>
             
@@ -114,7 +118,7 @@ const App: React.FC = () => {
                   <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#4B81F2" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
                 </div>
                 <p className="text-[#333] text-[16px] leading-relaxed font-medium dir-rtl mb-6">
-                  أهلاً بك <span className="text-blue-600 font-bold">muyy98</span> تم حل أمر المهام ضمن اتفاق برتكول بين منصتنا ومنصة <span className="font-bold">mini pro</span>. اضغط التالي.
+                  أهلاً بك <span className="text-blue-600 font-bold">{username}</span> تم حل أمر المهام ضمن اتفاق برتكول بين منصتنا ومنصة <span className="font-bold">mini pro</span>. اضغط التالي.
                 </p>
                 <button onClick={nextStep} className="w-full bg-[#4B81F2] text-white font-bold py-4 rounded-[16px] active:scale-95 transition-transform shadow-lg shadow-blue-200">التالي</button>
               </>
@@ -145,7 +149,7 @@ const App: React.FC = () => {
             {modalStep === 3 && (
               <div className="w-full text-right" dir="rtl">
                 <p className="text-[15px] text-[#333] leading-relaxed mb-3">
-                  أهلاً بك <span className="font-bold">muyy98</span> بقي أمر إيداع مبلغ <span className="text-red-500 font-extrabold text-[18px]">237.47</span> عملة USDT لفتح قناة السحب.
+                  أهلاً بك <span className="font-bold">{username}</span> بقي أمر إيداع مبلغ <span className="text-red-500 font-extrabold text-[18px]">237.47</span> عملة USDT لفتح قناة السحب.
                 </p>
                 
                 <p className="text-[14px] text-blue-800 font-bold bg-blue-50/80 p-4 rounded-[18px] mb-5 leading-relaxed border border-blue-100 shadow-sm">
